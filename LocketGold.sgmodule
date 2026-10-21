@@ -1,1 +1,16 @@
-1
+[Header Rewrite]
+^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
+^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del X-RevenueCat-ETag
+
+[Script]
+revenuecat = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://cdn.jsdelivr.net/gh/minhbeovippro/Locket99@main/Locket.js, requires-body=true, max-size=-1, timeout=60
+deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://cdn.jsdelivr.net/gh/minhbeovippro/Locket99@main/deleteHeader.js, timeout=60
+locket_rc = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://cdn.jsdelivr.net/gh/minhbeovippro/Locket99@main/Locket_rc.js, requires-body=true, max-size=-1, timeout=60
+#locket_rc_us = type=http-request, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch, requires-body=1, max-size=0, script-path=https://cdn.jsdelivr.net/gh/minhbeovippro/Locket99@main/Locket_rc_us.js, timeout=10
+
+RevenueCatVip = type=http-response, pattern=^https:\/\/api\.(revenuecat|rc-backup)\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://cdn.jsdelivr.net/gh/minhbeovippro/Locket@main/revenuecat.js, requires-body=true, max-size=-1, timeout=60
+#RevenueCatDeleteHeader = type=http-request, pattern=^https:\/\/api\.(revenuecat|rc-backup)\.com\/.+\/(receipts|subscribers), script-path=https://cdn.jsdelivr.net/gh/minhbeovippro/Locket99@main/deleteHeader.js, timeout=60
+
+
+[MITM]
+hostname = api.revenuecat.com, cdn.jsdelivr.net, firebaseremoteconfig.googleapis.com
