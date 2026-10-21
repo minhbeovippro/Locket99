@@ -1,14 +1,9 @@
-// ========= ID ========= //
-// Locket: Gold + Filter Pack
-// @duyvinh09
-// ========= Phần cố định ========= //
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"],
     obj = JSON.parse($response.body);
 
-obj.Attention = "Chúc mừng bạn! Vui lòng không sử dụng chúng dưới mục đích thương mại!";
 
-var FAR_FUTURE = "9999-01-09T10:10:14Z";
-var PAST = "2005-01-09T10:10:14Z";
+var FAR_FUTURE = "9999-09-09T09:09:09Z";
+var PAST = "2026-10-10T10:10:10Z";
 
 function makeSub(productId, priceAmount, priceCurrency) {
     return {
